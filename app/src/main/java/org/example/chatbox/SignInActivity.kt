@@ -19,6 +19,8 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -28,8 +30,8 @@ import kotlinx.coroutines.withContext
 class SignInActivity : AppCompatActivity() {
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var auth : FirebaseAuth
-    val signInButton = findViewById<SignInButton>(R.id.signInButton)
-    val progressBar = findViewById<ProgressBar>(R.id.progressBar)
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
@@ -40,7 +42,8 @@ class SignInActivity : AppCompatActivity() {
             .requestEmail()
             .build()
         googleSignInClient = GoogleSignIn.getClient(this, gso)
-
+        auth = Firebase.auth
+        val signInButton = findViewById<SignInButton>(R.id.signInButton)
         signInButton.setOnClickListener {
             signIn()
         }
@@ -74,7 +77,9 @@ class SignInActivity : AppCompatActivity() {
     private fun firebaseAuthWithGoogle(idToken: String) {
         val credential= GoogleAuthProvider.getCredential(idToken, null)
 
+        val signInButton = findViewById<SignInButton>(R.id.signInButton)
         signInButton.visibility = View.GONE
+        val progressBar = findViewById<ProgressBar>(R.id.progressBar)
         progressBar.visibility = View.VISIBLE
         GlobalScope.launch(Dispatchers.IO) {
             val auth = auth.signInWithCredential(credential).await()
@@ -92,8 +97,10 @@ class SignInActivity : AppCompatActivity() {
             startActivity(mainActivityIntent)
             finish()
         } else {
-            progressBar.visibility = View.GONE
+            val signInButton = findViewById<SignInButton>(R.id.signInButton)
             signInButton.visibility = View.VISIBLE
+            val progressBar = findViewById<ProgressBar>(R.id.progressBar)
+            progressBar.visibility = View.GONE
         }
     }
 
