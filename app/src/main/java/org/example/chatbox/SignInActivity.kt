@@ -3,12 +3,12 @@ package org.example.chatbox
 import android.app.Activity
 import android.content.ContentValues.TAG
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -26,6 +26,8 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import org.example.chatbox.daos.UserDao
+import org.example.chatbox.models.User
 
 class SignInActivity : AppCompatActivity() {
     private lateinit var googleSignInClient: GoogleSignInClient
@@ -47,6 +49,13 @@ class SignInActivity : AppCompatActivity() {
         signInButton.setOnClickListener {
             signIn()
         }
+    }
+
+
+    override fun onStart() {
+        super.onStart()
+        val currentUser = auth.currentUser
+        updateUI(currentUser)
     }
 
     private fun signIn() {
@@ -93,6 +102,11 @@ class SignInActivity : AppCompatActivity() {
 
     private fun updateUI(firebaseUser: FirebaseUser?) {
         if(firebaseUser != null) {
+
+            val user = User(firebaseUser.uid, firebaseUser.displayName, firebaseUser.photoUrl.toString())
+            val usersDao = UserDao()
+
+            usersDao.addUser(user)
             val mainActivityIntent = Intent(this, MainActivity::class.java)
             startActivity(mainActivityIntent)
             finish()
