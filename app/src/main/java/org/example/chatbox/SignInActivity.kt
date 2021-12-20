@@ -112,7 +112,7 @@ class SignInActivity : AppCompatActivity() {
             val usersDao = UserDao()
 
             usersDao.addUser(user)
-            val mainActivityIntent = Intent(this, MainActivity::class.java)
+            val mainActivityIntent = Intent(this, MiddleActivity::class.java)
             startActivity(mainActivityIntent)
             finish()
         } else {

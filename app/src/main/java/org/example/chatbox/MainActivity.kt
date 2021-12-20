@@ -31,6 +31,9 @@ class MainActivity : AppCompatActivity(), IPostAdapter {
         setUpRecyclerView()
     }
 
+
+
+
     private fun setUpRecyclerView() {
         postDao = PostDao()
         val postCollections = postDao.postCollections
@@ -41,22 +44,6 @@ class MainActivity : AppCompatActivity(), IPostAdapter {
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId) {
-            R.id.logoutButton -> {
-                Firebase.auth.signOut()
-                val intent = Intent(this, SignInActivity::class.java)
-                startActivity(intent)
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu, menu)
-        return true
     }
 
     override fun onStart() {

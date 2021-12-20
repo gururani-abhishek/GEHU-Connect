@@ -6,8 +6,15 @@
         <entry key="app/src/main/res/drawable/edittext_round_shape.xml" value="0.209375" />
         <entry key="app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_baseline_logout_24.xml" value="0.209375" />
+        <entry key="app/src/main/res/drawable/ic_circular.xml" value="0.12037037037037036" />
+        <entry key="app/src/main/res/drawable/ic_phone_icon.xml" value="0.12037037037037036" />
+        <entry key="app/src/main/res/drawable/ic_profile.xml" value="0.12037037037037036" />
+        <entry key="app/src/main/res/drawable/ic_profile_picture.xml" value="0.12037037037037036" />
+        <entry key="app/src/main/res/font/patrick_hand_sc.xml" value="0.12037037037037036" />
         <entry key="app/src/main/res/layout/activity_create_post.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_menu.xml" value="0.19322916666666667" />
+        <entry key="app/src/main/res/layout/activity_middle.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.17708333333333334" />
         <entry key="app/src/main/res/layout/item_post.xml" value="0.67" />
         <entry key="app/src/main/res/menu/menu.xml" value="0.19322916666666667" />
