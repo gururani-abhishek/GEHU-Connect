@@ -25,7 +25,7 @@ class MiddleActivity : AppCompatActivity(), View.OnClickListener {
         val regNo = findViewById<TextView>(R.id.registrationNumber)
         val email = findViewById<TextView>(R.id.email)
         val mobileNo = findViewById<TextView>(R.id.phoneNumber)
-        
+
         val db = Firebase.firestore
         val auth = Firebase.auth
         val currentUserId = auth.currentUser!!.uid
