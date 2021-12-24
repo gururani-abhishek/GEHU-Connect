@@ -10,6 +10,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.ktx.firestore
@@ -25,7 +26,7 @@ class MiddleActivity : AppCompatActivity(), View.OnClickListener {
         val regNo = findViewById<TextView>(R.id.registrationNumber)
         val email = findViewById<TextView>(R.id.email)
         val mobileNo = findViewById<TextView>(R.id.phoneNumber)
-
+        val imageView = findViewById<ImageView>(R.id.profilePic)
         val db = Firebase.firestore
         val auth = Firebase.auth
         val currentUserId = auth.currentUser!!.uid
@@ -36,6 +37,10 @@ class MiddleActivity : AppCompatActivity(), View.OnClickListener {
                     regNo.text = document.getString("regNo")
                     mobileNo.text = document.getString("mobileNo")
                     email.text = document.getString("email")
+                    Glide.with(this)
+                        .load(document.getString("imageUrl"))
+                        .circleCrop()
+                        .into(imageView)
                 } else {
                     Log.d(Tag, "no such document!")
                 }
@@ -77,20 +82,20 @@ class MiddleActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(view : View) {
         when(view.id) {
-//            R.id.profile -> {
-//                intent = Intent(this, Profile::class.java)
-//                startActivity(intent)
-//            }
+            R.id.profile -> {
+                intent = Intent(this, ProfileActivity::class.java)
+                startActivity(intent)
+            }
 //
 //            R.id.academics -> {
 //                intent = Intent(this, Academics::class.java)
 //                startActivity(intent)
 //            }
-//
-//            R.id.circular -> {
-//                intent = Intent(this, Circular::class.java)
-//                startActivity(intent)
-//            }
+
+            R.id.circular -> {
+                intent = Intent(this, CircularActivity::class.java)
+                startActivity(intent)
+            }
 
             R.id.chatBox -> {
                 intent = Intent(this, MainActivity::class.java)
