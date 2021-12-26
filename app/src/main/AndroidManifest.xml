@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ChatBox">
         <activity
+            android:name=".ResultActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AcademicsActivity"
+            android:exported="false" />
+        <activity
             android:name=".CircularActivity"
             android:exported="false" />
         <activity

@@ -86,11 +86,11 @@ class MiddleActivity : AppCompatActivity(), View.OnClickListener {
                 intent = Intent(this, ProfileActivity::class.java)
                 startActivity(intent)
             }
-//
-//            R.id.academics -> {
-//                intent = Intent(this, Academics::class.java)
-//                startActivity(intent)
-//            }
+
+            R.id.academics -> {
+                intent = Intent(this, AcademicsActivity::class.java)
+                startActivity(intent)
+            }
 
             R.id.circular -> {
                 intent = Intent(this, CircularActivity::class.java)
